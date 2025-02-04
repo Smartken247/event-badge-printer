@@ -32,7 +32,6 @@
         .badge {
             width: 105mm;
             height: 148mm;
-            border: 2px solid black;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -40,44 +39,63 @@
             margin: auto;
             font-size: 20px;
             position: relative;
-            background: #1a1a2e;
+            background: linear-gradient(to bottom, #ff8c00, #800080);
             padding: 10px;
             border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
         }
-        .badge img.profile {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 10px;
-            border: 3px solid white;
-        }
-        .badge .name {
+        .badge .header {
             font-size: 24px;
             font-weight: bold;
+            margin-top: 10px;
+        }
+        .badge img.profile {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            margin-top: 10px;
+        }
+        .badge .name {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .badge .company {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-top: 5px;
         }
         .badge .role {
-            font-size: 18px;
+            font-size: 20px;
             color: #ffcc00;
+            margin-top: 5px;
         }
         .badge .vip {
-            font-size: 26px;
+            font-size: 30px;
             font-weight: bold;
             background: linear-gradient(to right, #ff8c00, #800080);
-            padding: 5px 15px;
+            padding: 10px 20px;
             border-radius: 5px;
-            margin-top: 10px;
+            margin-top: 15px;
+            color: white;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
         }
         .badge .event-date {
-            font-size: 14px;
-            margin-top: 10px;
+            font-size: 16px;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
     <div class="badge" id="badge">
+        <div class="header">BUSINESS CONFERENCE 2030</div>
         <img id="profile" class="profile" src="" alt="Profile Picture">
         <div class="name" id="name">Name</div>
+        <div class="company" id="company">Company</div>
         <div class="role" id="role">Role</div>
         <div class="vip" id="vip">VIP PASS</div>
         <div class="event-date" id="event-date">VALID 24 TO 25 DEC, 2030</div>
@@ -90,6 +108,7 @@
         }
         
         document.getElementById("name").textContent = getQueryParam("name");
+        document.getElementById("company").textContent = getQueryParam("company");
         document.getElementById("role").textContent = getQueryParam("role");
         document.getElementById("vip").textContent = getQueryParam("pass");
         document.getElementById("event-date").textContent = getQueryParam("date");
