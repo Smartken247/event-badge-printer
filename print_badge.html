@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Badge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .badge {
+            width: 148mm;
+            height: 105mm;
+            border: 2px solid black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            font-size: 20px;
+            position: relative;
+        }
+        .badge img {
+            position: absolute;
+            top: 10px;
+            width: 50px;
+            height: auto;
+        }
+        .badge .name {
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 50px;
+        }
+        .badge .company {
+            font-size: 24px;
+            color: gray;
+        }
+        .badge .role {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="badge" id="badge">
+        <img id="logo" src="logo.png" alt="Logo">
+        <div class="name" id="name">Name</div>
+        <div class="company" id="company">Company</div>
+        <div class="role" id="role">Role</div>
+    </div>
+    
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param) || "";
+        }
+        
+        document.getElementById("name").textContent = getQueryParam("name");
+        document.getElementById("company").textContent = getQueryParam("company");
+        document.getElementById("role").textContent = getQueryParam("role");
+        
+        const logoParam = getQueryParam("logo");
+        if (logoParam) {
+            document.getElementById("logo").src = logoParam;
+        }
+        
+        window.onload = function() {
+            setTimeout(() => { window.print(); }, 500);
+        };
+    </script>
+</body>
+</html>
