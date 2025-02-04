@@ -113,9 +113,9 @@
         document.getElementById("vip").textContent = getQueryParam("pass");
         document.getElementById("event-date").textContent = getQueryParam("date");
         
-        const profileParam = getQueryParam("profile");
-        if (profileParam) {
-            document.getElementById("profile").src = profileParam;
+        const logoParam = getQueryParam("logo");
+        if (logoParam) {
+            document.getElementById("profile").src = logoParam;
         }
         
         window.onload = function() {
