@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Print Badge</title>
+    <title>Event Badge</title>
     <style>
         @media print {
             @page {
-                size: 105mm 148mm; /* A6 size */
-                margin: 0; /* Remove extra margins */
+                size: 105mm 148mm;
+                margin: 0;
             }
             body {
                 margin: 0;
@@ -17,14 +17,17 @@
             .badge {
                 width: 105mm;
                 height: 148mm;
-                page-break-after: always; /* Ensure only one badge per page */
+                page-break-after: always;
             }
         }
         
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 20px;
+            padding: 0;
+            margin: 0;
+            background: linear-gradient(to bottom, #ff8c00, #800080);
+            color: white;
         }
         .badge {
             width: 105mm;
@@ -37,33 +40,47 @@
             margin: auto;
             font-size: 20px;
             position: relative;
+            background: #1a1a2e;
+            padding: 10px;
+            border-radius: 10px;
         }
-        .badge img {
-            position: absolute;
-            top: 10px;
-            width: 50px;
-            height: auto;
+        .badge img.profile {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 3px solid white;
         }
         .badge .name {
-            font-size: 32px;
-            font-weight: bold;
-            margin-top: 50px;
-        }
-        .badge .company {
             font-size: 24px;
-            color: gray;
+            font-weight: bold;
         }
         .badge .role {
-            font-size: 20px;
+            font-size: 18px;
+            color: #ffcc00;
+        }
+        .badge .vip {
+            font-size: 26px;
+            font-weight: bold;
+            background: linear-gradient(to right, #ff8c00, #800080);
+            padding: 5px 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .badge .event-date {
+            font-size: 14px;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
     <div class="badge" id="badge">
-        <img id="logo" src="logo.png" alt="Logo">
+        <img id="profile" class="profile" src="" alt="Profile Picture">
         <div class="name" id="name">Name</div>
-        <div class="company" id="company">Company</div>
         <div class="role" id="role">Role</div>
+        <div class="vip" id="vip">VIP PASS</div>
+        <div class="event-date" id="event-date">VALID 24 TO 25 DEC, 2030</div>
     </div>
     
     <script>
@@ -73,12 +90,13 @@
         }
         
         document.getElementById("name").textContent = getQueryParam("name");
-        document.getElementById("company").textContent = getQueryParam("company");
         document.getElementById("role").textContent = getQueryParam("role");
+        document.getElementById("vip").textContent = getQueryParam("pass");
+        document.getElementById("event-date").textContent = getQueryParam("date");
         
-        const logoParam = getQueryParam("logo");
-        if (logoParam) {
-            document.getElementById("logo").src = logoParam;
+        const profileParam = getQueryParam("profile");
+        if (profileParam) {
+            document.getElementById("profile").src = profileParam;
         }
         
         window.onload = function() {
