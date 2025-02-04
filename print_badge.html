@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+@media print {
+    @page {
+        size: 105mm 148mm; /* A6 size */
+        margin: 0; /* Remove extra margins */
+    }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    .badge {
+        width: 105mm;
+        height: 148mm;
+        page-break-after: always; /* Ensure only one badge per page */
+    }
+}
+
+    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Print Badge</title>
